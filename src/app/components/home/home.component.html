@@ -1,0 +1,30 @@
+<div class="w3-panel w3-card-2">
+    <p>Enter the symbol of a stock to track(i.e AAPL, TSLA, GOOGL)</p>
+    <form>
+    <input type="text" id="stockInput"
+    required
+    [(ngModel)]="name" name="name" maxlength="5">
+    <button (click)="trackStock()" id="trackBtn" [disabled]="name==''">Track Stock</button>
+</form>
+</div>
+
+
+<div class="w3-panel w3-card-2" *ngFor="let res of stockList; let i = index;">
+    {{res.companyName | titlecase}} <button style="float: right;" (click)="removeStock(i)" id="remove{{res.name}}">	
+        &#10799;</button>
+    <p>Change today :  {{res.changeToday ==null  ? 0 : res.changeToday | percent  }}  </p>
+    <p>Opening price :  {{res.openingPrice | currency}}</p>
+    <p>Current price :  {{res.curentPrice | currency}}</p>
+    <p>High price :  {{res.highPrice | currency}}</p>
+    <a routerLink="sentiment/{{res.name}}" id="sentiment{{res.name}}">Go to social sentiment detail ></a>
+   
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Updating data... Please wait a short moment.</p>
+</ngx-spinner>

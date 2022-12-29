@@ -1,0 +1,28 @@
+<div  >
+   
+    <div class="w3-panel w3-card-2" >
+        <table>
+            <tr> {{companyName}}</tr>
+            <tr *ngFor="let res of stockDetail; let i = index;">                                                            
+                <td *ngIf="res.data!=false">
+                    <p>{{getMonthName(res.month)}} {{res.year}}</p>
+                    <p>Change : {{res.change}}</p>
+                    <p>MSPR :  {{res.mspr}}</p>
+                    
+                </td>  
+                <td *ngIf="res.data!=false">
+                    <img *ngIf="res.change<0" src="../../../assets/images/down-red-arrow.png" width="50"/>
+                    <img *ngIf="res.change>0" src="../../../assets/images/up-green-arrow.png" width="50"/>
+                </td>
+
+            </tr>
+            <tr *ngIf="stockDetail.length ==0">
+                No Data Found
+            </tr>
+        </table>
+       
+        
+    </div>
+    <a routerLink="/">< Back to list of stock ></a>
+  
+</div>
